@@ -11,7 +11,7 @@ body {
 }
 
 #choose-for-me {
-  padding: 60px;
+  padding: 68px;
   margin: 0 auto;
   font-size: 18px;
   max-width: 600px;
@@ -91,6 +91,8 @@ body {
     
     &::before,
     &::after {
+      top: 11px;
+      left: 6px;
       width: 10px;
       height: 2px;
       content: '';
@@ -116,7 +118,7 @@ body {
   .remove-item {
     left: 100%;
     border: none;
-    transform: translate(calc(100% + 10px), -50%);
+    transform: translate(calc(100% + 12px), -50%);
     
     &::before {
       transform: rotate(-45deg);

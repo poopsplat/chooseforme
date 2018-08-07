@@ -378,7 +378,7 @@ body {
 }
 
 #choose-for-me {
-  padding: 60px;
+  padding: 68px;
   margin: 0 auto;
   font-size: 18px;
   max-width: 600px;
@@ -449,6 +449,8 @@ body {
 #choose-for-me .add-item::before, #choose-for-me .add-item::after,
 #choose-for-me .remove-item::before,
 #choose-for-me .remove-item::after {
+  top: 11px;
+  left: 6px;
   width: 10px;
   height: 2px;
   content: '';
@@ -471,8 +473,8 @@ body {
 #choose-for-me .remove-item {
   left: 100%;
   border: none;
-  -webkit-transform: translate(calc(100% + 10px), -50%);
-          transform: translate(calc(100% + 10px), -50%);
+  -webkit-transform: translate(calc(100% + 12px), -50%);
+          transform: translate(calc(100% + 12px), -50%);
 }
 #choose-for-me .remove-item::before {
   -webkit-transform: rotate(-45deg);
