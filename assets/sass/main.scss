@@ -1,0 +1,143 @@
+@charset "UTF-8"; 
+
+// Reset
+@import "vendor/normalize";
+
+$color-primary: #3e4052;
+$color-secondary: #b3b6cb;
+
+body {
+  background: rgba($color-secondary, .2);
+}
+
+#choose-for-me {
+  padding: 60px;
+  margin: 0 auto;
+  font-size: 18px;
+  max-width: 600px;
+  color: $color-primary;
+  font-family: 'Space Mono', sans-serif;
+  
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  .visually-hidden {
+    border: 0;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    position: absolute;
+    clip: rect(0,0,0,0);
+  }
+  
+  button {
+    cursor: pointer;
+    background: none;
+    appearance: none;
+    border-radius: 2px;
+    font-family: inherit;
+    border: 3px solid $color-secondary;
+    
+    &:hover,
+    &:focus {
+      background-color: rgba($color-secondary, .3);
+    }
+    
+    &:focus {
+      outline: none;
+    }
+  }
+  
+  p {
+    font-size: 16px;
+  }
+  
+  #list {
+    padding: 0;
+    position: relative;
+    margin: 34px 0 34px 0;
+    
+    li {
+      padding: 10px;
+      line-height: 1;
+      border-bottom: 3px solid $color-secondary;
+      
+      &:hover,
+      &:focus {
+        background-color: rgba($color-secondary, .3);
+      }
+      
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  
+  .item-container {
+    position: relative;
+  }
+  
+  .add-item,
+  .remove-item {
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    transform: translate(100%, -50%);
+    
+    &::before,
+    &::after {
+      width: 10px;
+      height: 2px;
+      content: '';
+      display: block;
+      position: absolute;
+      background: $color-primary;
+    }
+    &::after {
+      transform: rotate(90deg);
+    }
+  }
+
+  .add-item {
+    right: -10px;
+
+    &::before,
+    &::after {
+      top: 8px;
+      left: 4px;
+    }
+  }
+  
+  .remove-item {
+    left: 100%;
+    border: none;
+    transform: translate(calc(100% + 10px), -50%);
+    
+    &::before {
+      transform: rotate(-45deg);
+    }
+    &::after {
+      transform: rotate(45deg);
+    }
+  }
+  
+  #submitButton {
+    width: 100%;
+    padding: 20px;
+    display: block;
+    margin: 0 auto;
+    font-weight: 700;
+  }
+  
+  #result {
+    line-height: 1;
+    padding: 0 34px;
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+  }
+}
