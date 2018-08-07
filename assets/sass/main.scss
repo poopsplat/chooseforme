@@ -11,11 +11,11 @@ body {
 }
 
 #choose-for-me {
-  padding: 68px;
   margin: 0 auto;
   font-size: 18px;
   max-width: 600px;
   color: $color-primary;
+  padding: 34px 68px 68px;
   font-family: 'Space Mono', sans-serif;
   
   *, *::before, *::after {
