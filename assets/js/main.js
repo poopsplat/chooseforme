@@ -43,6 +43,13 @@ var Main = (function($) {
       if ($list.find('li').length === 1) {
         $list.find('.item-container .remove-item').remove();
       }
+
+      // If toggled when a result is already display, 
+      // allow for a new result to be chosen
+      if ($submit.is('.hidden')) {
+        $submit.removeClass('hidden');
+        $('#result').remove();
+      }
     });
 
     // Reset

@@ -519,9 +519,11 @@ body {
   opacity: 1;
 }
 #choose-for-me #result {
+  padding: 10px;
   line-height: 1;
-  padding: 0 34px;
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
   text-align: center;
+  word-break: break-word;
+  background-color: rgba(179, 182, 203, 0.3);
 }
