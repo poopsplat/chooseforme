@@ -12,7 +12,7 @@
 /build
 
 # fonts
-public/fonts
+public/assets/fonts
 
 # misc
 .DS_Store

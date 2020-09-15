@@ -13,8 +13,7 @@ def deploy():
   update()
   local('rm -rf build')
   local('yarn build')
-  run('mkdir -p ' + env.remotepath + '/build')
-  put('build', env.remotepath + '/build/')
+  put('build', env.remotepath)
 
 def update():
   with cd(env.remotepath):
