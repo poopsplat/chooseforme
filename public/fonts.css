@@ -1,0 +1,19 @@
+// Degular Text
+@font-face {
+  font-family: 'Degular Text';
+  src: url('../fonts/Degular_Text-Semibold.woff2') format('woff2'),
+       url('../fonts/Degular_Text-Semibold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Degular Display
+@font-face {
+  font-family: 'Degular Display';
+  src: url('../fonts/Degular_Display-Semibold.woff2') format('woff2'),
+       url('../fonts/Degular_Display-Semibold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

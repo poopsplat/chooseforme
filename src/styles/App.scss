@@ -1,0 +1,336 @@
+@charset "UTF-8";
+
+// Reset
+@import "../../node_modules/normalize.css/normalize.css";
+
+// Color Vars
+$color-primary: #1160e9;
+$color-secondary: #f9efe3;
+// Font Vars
+$font-regular: 'Degular Text', Georgia, serif;
+$font-display: 'Degular Display', Georgia, serif;
+$font-features: "pnum", "tnum" 0, "lnum", "onum" 0;
+// Breakpoint Vars
+$breakpoint-md: 600px;
+// Misc
+$box-shadow: 0 0 6px 6px rgba(127,127,127,0.3);
+
+:root {
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-tertiary: #{darken($color-secondary, 10%)};
+  --color-quaternary: #{rgba($color-primary, 0.1)};
+  --color-quinary: #{rgba($color-primary, 0.2)};
+
+}
+[data-theme="dark"] {
+  --color-primary: #{$color-secondary};
+  --color-secondary: #{$color-primary};
+  --color-tertiary: #{darken($color-primary, 10%)};
+  --color-quaternary: #{rgba($color-secondary, 0.1)};
+  --color-quinary: #{rgba($color-secondary, 0.2)};
+
+  .theme-switcher {
+    transform: rotate(180deg);
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-primary);
+  font-family: $font-regular;
+  font-feature-settings: $font-features;
+  background-color: var(--color-secondary);
+}
+
+h1 {
+  margin-top: 0;
+  line-height: 1;
+  font-size: 64px;
+  font-family: $font-display;
+
+  @media screen and (min-width: $breakpoint-md) {
+    font-size: 98px;
+  }
+}
+
+.app-container {
+  padding: 34px;
+  margin: 0 auto;
+  max-width: $breakpoint-md;
+
+  @media screen and (min-width: $breakpoint-md) {
+    padding: 34px 68px 68px;
+  }
+}
+
+// App Styles
+.app {
+  margin-top: 64px;
+
+  // Theme-switcher
+  .theme-switcher {
+    top: 17px;
+    z-index: 1;
+    right: 17px;
+    width: 32px;
+    height: 32px;
+    position: fixed;
+    overflow: hidden;
+    border-radius: 32px;
+    box-shadow: $box-shadow;
+    backface-visibility: hidden;
+    clip-path: circle(48px at 0 0);
+    transition: transform 0.3s ease-out;
+    &::before {
+      top: -3px;
+      left: -25%;
+      width: 150%;
+      content: '';
+      bottom: -3px;
+      position: absolute;
+      transform: rotate(45deg);
+      transition: transform 0.3s ease-out;
+      background-image: linear-gradient(to right, var(--color-primary), var(--color-primary) 50%, var(--color-secondary) 50%, var(--color-secondary) 100%);
+    }
+    &:hover {
+      &::before {
+        transform: rotate(45deg) translate3d(15%, 0, 0);
+      }
+    }
+  }
+
+  button {
+    color: inherit;
+    line-height: 1;
+    cursor: pointer;
+    background: none;
+    appearance: none;
+    border: 3px solid;
+    border-radius: 32px;
+    font-family: inherit;
+    font-family: $font-display;
+
+    &:hover,
+    &:focus {
+      background-color: var(--color-tertiary);
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  #list {
+    padding: 0;
+    position: relative;
+    margin: 34px 0 34px 0;
+
+    input {
+      width: 100%;
+      border: none;
+      padding: 10px;
+      line-height: 1;
+      color: inherit;
+      font-size: 32px;
+      appearance: none;
+      border-bottom: 3px solid;
+      font-family: $font-display;
+      background: var(--color-quaternary);
+      transition: border-width 0.2s ease-out;
+
+      &:hover {
+        background-color: var(--color-quinary);
+      }
+
+      &:focus {
+        outline: none;
+        background-color: var(--color-tertiary);
+      }
+
+      &::placeholder {
+        opacity: 0.5;
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  .item-container {
+    position: relative;
+    padding-right: 44px;
+
+    + .item-container {
+      margin-top: 6px;
+    }
+  }
+
+  .add-item,
+  .remove-item,
+  .close-result {
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+
+    &::before,
+    &::after {
+      top: 12px;
+      left: 6px;
+      width: 14px;
+      height: 3px;
+      content: '';
+      display: block;
+      position: absolute;
+      background: var(--color-primary);
+    }
+    &::after {
+      transform: rotate(90deg);
+    }
+  }
+
+  .add-item,
+  .remove-item {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .remove-item,
+  .close-result {
+    &::before {
+      transform: rotate(-45deg);
+    }
+    &::after {
+      transform: rotate(45deg);
+    }
+  }
+
+  .add-item {
+    right: 0;
+
+    &::before,
+    &::after {
+      top: 11px;
+      left: 6px;
+    }
+  }
+
+  .remove-item {
+    right: -32px;
+    border-color: var(--color-secondary);
+    &:hover,
+    &:focus {
+      border-color: var(--color-tertiary);
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-md) {
+    .item-container {
+      padding-right: 0;
+    }
+
+    .add-item,
+    .remove-item {
+      transform: translate(100%, -50%);
+    }
+
+    .add-item {
+      right: -10px
+    }
+
+    .remove-item {
+      left: 100%;
+      right: auto;
+      transform: translate(calc(100% + 12px), -50%);
+    }
+  }
+
+  #submitButton {
+    width: 100%;
+    padding: 20px;
+    display: block;
+    margin: 0 auto;
+    font-size: 32px;
+    font-weight: 700;
+
+    &:active {
+      transform: translateY(2px);
+    }
+
+    &[disabled] {
+      opacity: 0.5;
+      background-color: var(--color-tertiary);
+    }
+  }
+
+  .reset-container {
+    text-align: center;
+  }
+
+  #reset {
+    position: relative;
+    padding: 3px 16px 6px;
+    display: inline-block;
+  }
+
+  #result {
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 100%;
+    line-height: 1;
+    position: fixed;
+    font-size: 64px;
+    font-weight: 700;
+    padding: 64px 32px;
+    text-align: center;
+    border-radius: 32px;
+    word-break: break-word;
+    box-shadow: $box-shadow;
+    max-width: $breakpoint-md;
+    color: var(--color-secondary);
+    transform: translate(-50%, -50%);
+    background-color: var(--color-primary);
+
+    h2 {
+      margin: 0;
+    }
+
+    .close-result {
+      top: 17px;
+      right: 17px;
+      width: 32px;
+      height: 32px;
+      &::before,
+      &::after {
+        background-color: var(--color-secondary);
+      }
+      &:hover,
+      &:focus {
+        background-color: var(--color-secondary);
+        &::before,
+        &::after {
+          background-color: var(--color-primary);
+        }
+      }
+    }
+  }
+}
+
+// Utility Styles
+.visually-hidden {
+  border: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  position: absolute;
+  clip: rect(0,0,0,0);
+}
+.hidden {
+  display: none;
+}

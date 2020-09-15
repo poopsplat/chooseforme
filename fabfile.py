@@ -1,16 +1,20 @@
 from fabric.api import *
 import os
 
-env.hosts = ['chooseforme.mattsoria.com']
-env.user = 'poopsplat'
+env.hosts = ['opal4.opalstack.com']
+env.user = 'soriamatt'
 env.path = '~/Sites/chooseforme'
-env.remotepath = '/home/poopsplat/webapps/chooseforme'
+env.remotepath = '/home/soriamatt/apps/chooseforme'
 env.git_branch = 'master'
 env.warn_only = True
 env.remote_protocol = 'http'
 
 def deploy():
   update()
+  local('rm -rf build')
+  local('yarn build')
+  run('mkdir -p ' + env.remotepath + '/build')
+  put('build', env.remotepath + '/build/')
 
 def update():
   with cd(env.remotepath):
