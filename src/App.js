@@ -28,6 +28,7 @@ function App() {
     if (newItemCreated && newItemInitiator < values.length) {
       const nextItem = document.getElementsByClassName('item')[newItemInitiator + 1];
       nextItem.focus();
+      nextItem.scrollIntoView();
       setNewItemCreated(false);
     }
   }, [newItemCreated, newItemInitiator, values.length]);
