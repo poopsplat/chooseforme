@@ -71,6 +71,12 @@ function App() {
 
   return (
     <div className="app">
+      { result !== '' &&
+        <div
+          className="app-overlay"
+          onClick={() => setResult('')}
+        ></div>
+      }
       <ThemeSwitcherComponent/>
       <form id="choose-container">
         <div id="list">
@@ -81,7 +87,7 @@ function App() {
         <div className="submit-result-container">
           {result !== '' &&
             <div id="result" className="result">
-              <h2>{result}</h2>
+              <h2>{result}!</h2>
               <button
                 className="close-result"
                 onClick={() => setResult('')}

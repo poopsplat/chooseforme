@@ -21,14 +21,16 @@ $box-shadow: 0 0 6px 6px rgba(127,127,127,0.3);
   --color-tertiary: #{darken($color-secondary, 10%)};
   --color-quaternary: #{rgba($color-primary, 0.1)};
   --color-quinary: #{rgba($color-primary, 0.2)};
-
+  --color-senary: #{rgba($color-secondary, 0.6)};
 }
+
 [data-theme="dark"] {
   --color-primary: #{$color-secondary};
   --color-secondary: #{$color-primary};
   --color-tertiary: #{darken($color-primary, 10%)};
   --color-quaternary: #{rgba($color-secondary, 0.1)};
   --color-quinary: #{rgba($color-secondary, 0.2)};
+  --color-senary: #{rgba($color-primary, 0.6)};
 
   .theme-switcher {
     transform: rotate(180deg);
@@ -48,6 +50,11 @@ body {
   background-color: var(--color-secondary);
 }
 
+::selection {
+  color: var(--color-secondary);
+  background-color: var(--color-primary);
+}
+
 h1 {
   margin-top: 0;
   line-height: 1;
@@ -56,6 +63,39 @@ h1 {
 
   @media screen and (min-width: $breakpoint-md) {
     font-size: 98px;
+  }
+}
+
+.site-link {
+  font-size: 18px;
+  margin: 64px 0 0;
+  line-height: 30px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  font-family: $font-display;
+
+  a {
+    margin-left: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    &:hover,
+    &:focus {
+      svg {
+        animation: headShake 1s forwards infinite;
+      }
+    }
+  }
+
+  svg {
+    width: 32px;
+    height: 32px;
+    vertical-align: top;
+    .smiley-background {
+      fill: var(--color-secondary);
+    }
+    .smiley-face {
+      fill: var(--color-primary);
+    }
   }
 }
 
@@ -72,6 +112,17 @@ h1 {
 // App Styles
 .app {
   margin-top: 64px;
+
+  // App Overlay
+  .app-overlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    position: fixed;
+    background-color: var(--color-senary);
+  }
 
   // Theme-switcher
   .theme-switcher {
@@ -255,7 +306,14 @@ h1 {
     display: block;
     margin: 0 auto;
     font-size: 32px;
-    font-weight: 700;
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+
+    &:hover,
+    &:focus {
+      color: var(--color-primary);
+      background-color: var(--color-tertiary);
+    }
 
     &:active {
       transform: translateY(2px);
@@ -263,6 +321,7 @@ h1 {
 
     &[disabled] {
       opacity: 0.5;
+      cursor: not-allowed;
       background-color: var(--color-tertiary);
     }
   }
@@ -279,25 +338,24 @@ h1 {
 
   #result {
     top: 50%;
-    left: 50%;
-    z-index: 2;
-    width: 100%;
-    line-height: 1;
+    left: 32px;
+    z-index: 3;
     position: fixed;
-    font-size: 64px;
-    font-weight: 700;
     padding: 64px 32px;
     text-align: center;
     border-radius: 32px;
-    word-break: break-word;
     box-shadow: $box-shadow;
+    width: calc(100% - 64px);
     max-width: $breakpoint-md;
+    transform: translateY(-50%);
     color: var(--color-secondary);
-    transform: translate(-50%, -50%);
     background-color: var(--color-primary);
 
     h2 {
       margin: 0;
+      line-height: 1;
+      font-size: 32px;
+      word-break: break-word;
     }
 
     .close-result {
@@ -318,6 +376,13 @@ h1 {
         }
       }
     }
+
+    @media screen and (min-width: $breakpoint-md) {
+      left: 50%;
+      width: 100%;
+      font-size: 64px;
+      transform: translate(-50%, -50%);
+    }
   }
 }
 
@@ -334,4 +399,31 @@ h1 {
 }
 .hidden {
   display: none;
+}
+
+// Headshake Animation (https://animate.style/)
+@keyframes headShake {
+  0% {
+    transform: translateX(0);
+  }
+
+  6.5% {
+    transform: translateX(-6px) rotateY(-9deg);
+  }
+
+  18.5% {
+    transform: translateX(5px) rotateY(7deg);
+  }
+
+  31.5% {
+    transform: translateX(-3px) rotateY(-5deg);
+  }
+
+  43.5% {
+    transform: translateX(2px) rotateY(3deg);
+  }
+
+  50% {
+    transform: translateX(0);
+  }
 }
