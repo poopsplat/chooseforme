@@ -218,6 +218,14 @@ h1 {
     + .item-container {
       margin-top: 6px;
     }
+
+    // Animation entrance
+    &.enter {
+      opacity: 0;
+    }
+    &.enter-active {
+      animation: zoomIn 0.5s forwards;
+    }
   }
 
   .add-item,
@@ -383,6 +391,10 @@ h1 {
       width: 100%;
       font-size: 64px;
       transform: translate(-50%, -50%);
+
+      .close-result {
+        right: 25px;
+      }
     }
   }
 }
@@ -426,5 +438,16 @@ h1 {
 
   50% {
     transform: translateX(0);
+  }
+}
+// Zoom in!
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
   }
 }
