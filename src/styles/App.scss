@@ -13,7 +13,7 @@ $font-features: "pnum", "tnum" 0, "lnum", "onum" 0;
 // Breakpoint Vars
 $breakpoint-md: 600px;
 // Misc
-$box-shadow: 0 0 6px 6px rgba(127,127,127,0.3);
+$box-shadow: 0 0 3px 3px rgba(127,127,127,0.3);
 
 :root {
   --color-primary: #{$color-primary};
@@ -137,7 +137,7 @@ h1 {
     border-radius: 32px;
     box-shadow: $box-shadow;
     clip-path: circle(48px at 0 0);
-    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, box-shadow 0.2s ease-out;
     &::before {
       top: -3px;
       left: -25%;
@@ -150,6 +150,7 @@ h1 {
       background-image: linear-gradient(to right, var(--color-primary), var(--color-primary) 50%, var(--color-secondary) 50%, var(--color-secondary) 100%);
     }
     &:hover {
+      box-shadow: none;
       &::before {
         transform: rotate(45deg) translate3d(15%, 0, 0);
       }
